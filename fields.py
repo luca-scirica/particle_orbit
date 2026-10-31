@@ -23,7 +23,3 @@ def B_field(pos):
         B = B + B_theta * theta_hat
 
     return B
-
-print(B_field((R0, 0.0, 0.0)))          # center: should be (0, 12.2, 0), purely toroidal
-print(B_field((R0 + 0.3, 0.0, 0.0)))    # outboard side: weaker toroidal, plus a z component
-print(B_field((R0 - 0.3, 0.0, 0.0))) 
