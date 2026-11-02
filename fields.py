@@ -8,7 +8,7 @@ q = 2.0      # safety factor: how many times a field line goes around the long w
 def B_field(pos):
     x, y, z = pos
     R = np.hypot(x, y)            # distance from the z-axis
-    r = np.hypot(R - R0, z)       # distance from the plasma center circle (minor radius)
+    r = np.hypot(R - R0, z)       # distance from the plasma center (minor radius)
 
     #toroidal field B ~ 1/R
     B_phi = B0 * R0 / R 

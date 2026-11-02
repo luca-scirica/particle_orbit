@@ -12,7 +12,7 @@ def euler_step(pos, v, dt):
     v_new = v + a * dt
     pos_new = pos + v_new * dt
     #print(np.linalg.norm(v_new)/np.linalg.norm(v)) # prints the ratio of the new velocity to the old velocity, which should be 1 for a purely magnetic field
-    print(str(np.hypot(pos_new[0], pos_new[1])) + ", " + str(pos_new[2])) #prints R, z for each time step
+    #print(str(np.hypot(pos_new[0], pos_new[1])) + ", " + str(pos_new[2])) #prints R, z for each time step
     return pos_new, v_new
 
 def simulate_trajectory(pos, v, dt, n_steps):
