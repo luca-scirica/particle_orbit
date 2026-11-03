@@ -15,7 +15,7 @@ def B_field(pos):
     phi_hat = np.array([-y / R, x / R, 0.0])
     B = B_phi * phi_hat
 
-    if r > 1e-12: #no poloidal field at the center of the plasma
+    if r > 1e-12: #no poloidal field at the center of the plasma, cant divide by zero
         B_theta = (r / R) * B_phi / q
         theta_hat = np.array([-(z / r) * (x / R),
                               -(z / r) * (y / R),
@@ -23,3 +23,6 @@ def B_field(pos):
         B = B + B_theta * theta_hat
 
     return B
+
+def uniform_field(pos):
+    return np.array([0.0, 0.0, B0])
