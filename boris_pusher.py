@@ -6,8 +6,8 @@ from fields import B_field, B0, R0
 Q = 1.602176634e-19    # charge (C)
 M = 1.67262192e-27     # mass (kg)
 
-def boris_step(pos, v, dt):
-    B = B_field(pos)
+def boris_step(pos, v, dt, B_field_func=B_field):
+    B = B_field_func(pos)
     t = (Q * B / M) * (dt / 2)
     s = 2 * t / (1 + np.dot(t, t))
     v_prime = v + np.cross(v, t)
