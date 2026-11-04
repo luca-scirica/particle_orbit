@@ -16,7 +16,7 @@ def simple_cyclotron(t):
     x = 1e6 / omega_c * np.sin(omega_c * t)
     y = - 1e6 / omega_c * ( 1 - np.cos(omega_c * t))
 
-    return x, y
+    return x, y, 0
 
 def graph_solutions(pos, v, dt, n_steps, B_field_func=fld.B_field, analytical_solution_func=None):
     steps_taken = 0
@@ -89,4 +89,19 @@ def graph_euler_solutions(pos, v, dt, n_steps, B_field_func=fld.B_field, analyti
     plt.show()
     return
 
-graph_solutions(np.array([0, 0.0, 0.0]), np.array([1e6, 0.0, 0.0]), 1e-10, 30, fld.uniform_field, simple_cyclotron)
+def error_scaling(pos, v, T, B_field_func=fld.B_field, analytical_solution_func=None):
+    errors = []
+    dts = [1e-10, 5e-11, 1e-11, 5e-12, 1e-12]
+    for dt in dts:
+        n_steps = int(T / dt)
+        bp_pos = bp.simulate_trajectory(pos, v, dt, n_steps, B_field_func)[0]
+        analytical_pos = analytical_solution_func(n_steps * dt)
+        errors.append(np.linalg.norm(bp_pos - analytical_pos))
+    plt.loglog(dts, errors, marker='o')
+    plt.xlabel("dt (s)")
+    plt.ylabel("Position Error (m)")
+    plt.title("Position Error vs dt")
+    plt.show()
+    return
+
+error_scaling(np.array([0, 0.0, 0.0]), np.array([1e6, 0.0, 0.0]), 1e-8, fld.uniform_field, simple_cyclotron)
