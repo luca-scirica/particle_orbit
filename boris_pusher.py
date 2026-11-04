@@ -19,6 +19,7 @@ def boris_step(pos, v, dt, B_field_func=B_field):
 
 def simulate_trajectory(pos, v, dt, n_steps, B_field_func=B_field):
     steps_taken = 0
+    v = boris_step(pos, v, -dt / 2, B_field_func)[1]  # Half-step back in velocity
     while steps_taken < n_steps:
         pos, v = boris_step(pos, v, dt, B_field_func)
         steps_taken += 1

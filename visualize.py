@@ -8,6 +8,7 @@ def z_trajectory(pos, v, dt, n_steps, B_field_func=fld.B_field):
     steps_taken = 0
     z_positions = []
     time = []
+    v = bp.boris_step(pos, v, -dt / 2, B_field_func)[1]  # Half-step back in velocity
     while steps_taken < n_steps:
         pos, v = bp.boris_step(pos, v, dt, B_field_func)
         steps_taken += 1
@@ -24,6 +25,7 @@ def x_trajectory(pos, v, dt, n_steps, B_field_func=fld.B_field):
     steps_taken = 0
     x_positions = []
     time = []
+    v = bp.boris_step(pos, v, -dt / 2, B_field_func)[1]  # Half-step back in velocity
     while steps_taken < n_steps:
         pos, v = bp.boris_step(pos, v, dt, B_field_func)
         steps_taken += 1
@@ -40,6 +42,7 @@ def y_trajectory(pos, v, dt, n_steps, B_field_func=fld.B_field):
     steps_taken = 0
     y_positions = []
     time = []
+    v = bp.boris_step(pos, v, -dt / 2, B_field_func)[1]  # Half-step back in velocity
     while steps_taken < n_steps:
         pos, v = bp.boris_step(pos, v, dt, B_field_func)
         steps_taken += 1
@@ -57,6 +60,7 @@ def R_trajectory(pos, v, dt, n_steps, B_field_func=fld.B_field):
     steps_taken = 0
     R_positions = []
     time = []
+    v = bp.boris_step(pos, v, -dt / 2, B_field_func)[1]  # Half-step back in velocity
     while steps_taken < n_steps:
         pos, v = bp.boris_step(pos, v, dt, B_field_func)
         steps_taken += 1
@@ -69,6 +73,6 @@ def R_trajectory(pos, v, dt, n_steps, B_field_func=fld.B_field):
     plt.show()
     return
 
-x_trajectory(np.array([0.0, 0.0, 0.0]), np.array([0.0, 1e6, 0.0]), 1e-10, 400, fld.uniform_field)
-y_trajectory(np.array([0.0, 0.0, 0.0]), np.array([0.0, 1e6, 0.0]), 1e-10, 400, fld.uniform_field)
+#x_trajectory(np.array([0.0, 0.0, 0.0]), np.array([0.0, 1e6, 0.0]), 1e-10, 400, fld.uniform_field)
+#y_trajectory(np.array([0.0, 0.0, 0.0]), np.array([0.0, 1e6, 0.0]), 1e-10, 400, fld.uniform_field)
 

@@ -23,6 +23,7 @@ def graph_solutions(pos, v, dt, n_steps, B_field_func=fld.B_field, analytical_so
     x_positions = []
     y_positions = []
     times = []
+    v = bp.boris_step(pos, v, -dt / 2, B_field_func)[1]  # Half-step back in velocity
     while steps_taken < n_steps:
         pos, v = bp.boris_step(pos, v, dt, B_field_func)
         steps_taken += 1
@@ -88,4 +89,4 @@ def graph_euler_solutions(pos, v, dt, n_steps, B_field_func=fld.B_field, analyti
     plt.show()
     return
 
-graph_solutions(np.array([0, 0.0, 0.0]), np.array([1e6, 0.0, 0.0]), 1e-10, 300, fld.uniform_field, simple_cyclotron)
+graph_solutions(np.array([0, 0.0, 0.0]), np.array([1e6, 0.0, 0.0]), 1e-10, 30, fld.uniform_field, simple_cyclotron)
