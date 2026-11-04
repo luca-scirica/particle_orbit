@@ -28,4 +28,4 @@ def uniform_field(pos):
     return np.array([0.0, 0.0, B0])
 
 #print(simulate_trajectory(np.array([R0, 0.0, 0.0]), np.array([0.0, 1e6, 0.0]), 1e-10, 400))
-simulate_trajectory(np.array([0, 0.0, 0.0]), np.array([1e6, 0.0, 0.0]), 1e-10, 400, uniform_field)
+#simulate_trajectory(np.array([0, 0.0, 0.0]), np.array([1e6, 0.0, 0.0]), 1e-10, 400, uniform_field)

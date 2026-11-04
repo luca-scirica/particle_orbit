@@ -6,8 +6,8 @@ from fields import B_field, B0, R0
 Q = 1.602176634e-19    # charge (C)
 M = 1.67262192e-27     # mass (kg)
 
-def euler_step(pos, v, dt):
-    B = B_field(pos)
+def euler_step(pos, v, dt, B_field_func=B_field):
+    B = B_field_func(pos)
     a = (Q / (M)) * np.cross(v, B)    # acceleration due to the magnetic field from the Lorentz force
     v_new = v + a * dt
     pos_new = pos + v_new * dt
@@ -22,4 +22,4 @@ def simulate_trajectory(pos, v, dt, n_steps):
         steps_taken += 1
     return pos, v
 
-print(simulate_trajectory(np.array([R0, 0.0, 0.0]), np.array([0.0, 1e6, 0.0]), 1e-10, 400))
+#print(simulate_trajectory(np.array([R0, 0.0, 0.0]), np.array([0.0, 1e6, 0.0]), 1e-10, 400))
